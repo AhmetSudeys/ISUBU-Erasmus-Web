@@ -1,0 +1,111 @@
+@model deneme.Models.Okul
+@{
+    ViewData["Title"] = "Okul Detayları";
+}
+
+<h2>Okul Detayları</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <dl class="row">
+            <dt class="col-sm-3">Okul Adı:</dt>
+            <dd class="col-sm-9">@Model.OkulAd</dd>
+
+            <dt class="col-sm-3">Ülke:</dt>
+            <dd class="col-sm-9">
+                <country-flag country-name="@Model.Ulke?.UlkeIsim"></country-flag>
+                @Model.Ulke?.UlkeIsim
+            </dd>
+
+            <dt class="col-sm-3">İnternet Sitesi:</dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.InternetSitesi))
+                {
+                    <a href="@Model.InternetSitesi" target="_blank">@Model.InternetSitesi</a>
+                }
+                else
+                {
+                    <span class="text-muted">-</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Koordinatlar:</dt>
+            <dd class="col-sm-9">
+                @if (Model.Latitude.HasValue && Model.Longitude.HasValue)
+                {
+                    <span class="badge bg-success">
+                        <i class="fas fa-map-marker-alt"></i> 
+                        @Model.Latitude.Value.ToString("F4"), @Model.Longitude.Value.ToString("F4")
+                    </span>
+                }
+                else
+                {
+                    <span class="badge bg-warning">Koordinat bilgisi yok</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Erasmus Programları:</dt>
+            <dd class="col-sm-9">
+                @if (Model.ErasmusProgramlari != null && Model.ErasmusProgramlari.Any())
+                {
+                    <span class="badge bg-info">@Model.ErasmusProgramlari.Count program</span>
+                }
+                else
+                {
+                    <span class="text-muted">Henüz program eklenmemiş</span>
+                }
+            </dd>
+        </dl>
+
+        @if (Model.ErasmusProgramlari != null && Model.ErasmusProgramlari.Any())
+        {
+            <h4 class="mt-4">Erasmus Programları</h4>
+            <table class="table table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>Erasmus Kodu</th>
+                        <th>Bölüm</th>
+                        <th>Dil</th>
+                        <th>Eğitim Seviyesi</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var program in Model.ErasmusProgramlari)
+                    {
+                        <tr>
+                            <td>@program.ErasmusKodu</td>
+                            <td>@program.BolumAdi</td>
+                            <td>@program.Dil?.DilAdi</td>
+                            <td>
+                                @if (program.EgitimSeviyeleri != null && program.EgitimSeviyeleri.Any())
+                                {
+                                    @string.Join(", ", program.EgitimSeviyeleri.Select(es => es.EgitimSeviyesiAdi))
+                                }
+                                else
+                                {
+                                    <span class="text-muted">-</span>
+                                }
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Details", "ErasmusProgrami", new { area = "Admin", id = program.ErasmusId })" 
+                                   class="btn btn-sm btn-info">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+        <div class="mt-4">
+            <a asp-action="Edit" asp-route-id="@Model.OkulId" class="btn btn-warning">
+                <i class="fas fa-edit"></i> Düzenle
+            </a>
+            <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+        </div>
+    </div>
+</div>
+

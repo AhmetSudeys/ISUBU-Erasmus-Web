@@ -1,0 +1,225 @@
+@model deneme.Models.ErasmusProgrami
+@{
+    ViewData["Title"] = "Program Detayları";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3>@Model.Okul?.OkulAd</h3>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Erasmus Kodu:</dt>
+                        <dd class="col-sm-8">@Model.ErasmusKodu</dd>
+
+                        <dt class="col-sm-4">Ülke:</dt>
+                        <dd class="col-sm-8">
+                            <country-flag country-name="@Model.Okul?.Ulke?.UlkeIsim"></country-flag>
+                            @Model.Okul?.Ulke?.UlkeIsim
+                        </dd>
+
+                        <dt class="col-sm-4">Bölüm:</dt>
+                        <dd class="col-sm-8">@Model.BolumAdi</dd>
+
+                        <dt class="col-sm-4">Dil:</dt>
+                        <dd class="col-sm-8">@Html.Badge(Model.Dil?.DilAdi ?? "N/A", "info")</dd>
+
+                        <dt class="col-sm-4">Eğitim Seviyesi:</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.EgitimSeviyeleri != null && Model.EgitimSeviyeleri.Any())
+                            {
+                                @string.Join(", ", Model.EgitimSeviyeleri.Select(es => es.EgitimSeviyesiAdi))
+                            }
+                            else
+                            {
+                                <span class="text-muted">-</span>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-4">Geçerlilik Tarihi:</dt>
+                        <dd class="col-sm-8">@Model.GecerlilikTarihi</dd>
+
+                        <dt class="col-sm-4">Güz Nominasyon:</dt>
+                        <dd class="col-sm-8">@Model.GuzNomisyon</dd>
+
+                        <dt class="col-sm-4">Bahar Nominasyon:</dt>
+                        <dd class="col-sm-8">@Model.BaharNomisyon</dd>
+
+                        <dt class="col-sm-4">Anlaşma Durumu:</dt>
+                        <dd class="col-sm-8">@Html.StatusBadge(Model.AnlasmaDurumu ?? "")</dd>
+
+                        @if (!string.IsNullOrEmpty(Model.KontenjanDetayi))
+                        {
+                            <dt class="col-sm-4">Kontenjan Detayı:</dt>
+                            <dd class="col-sm-8">@Model.KontenjanDetayi</dd>
+                        }
+                    </dl>
+                </div>
+            </div>
+
+            @if (Model.Okul != null && Model.Okul.Latitude.HasValue && Model.Okul.Longitude.HasValue)
+            {
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5>Okul Konumu</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div id="programMap" style="width: 100%; height: 400px;"></div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5>Okul Konumu</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted">Bu okul için konum bilgisi bulunmamaktadır.</p>
+                    </div>
+                </div>
+            }
+
+            <div class="card mt-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Yorumlar</h5>
+                    <a href="@Url.Action("YorumEkle", new { id = Model.ErasmusId })" class="btn btn-primary btn-sm">
+                        <i class="fas fa-comment"></i> Yorum Yap
+                    </a>
+                </div>
+                <div class="card-body">
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            @TempData["Success"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    
+                    @if (Model.Yorumlar != null && Model.Yorumlar.Any())
+                    {
+                        @foreach (var yorum in Model.Yorumlar.OrderByDescending(y => y.YorumId))
+                        {
+                            <div id="yorum-@yorum.YorumId" class="mb-3 pb-3 border-bottom">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <div>
+                                        <strong>@yorum.KullaniciAdi</strong>
+                                        @if (!string.IsNullOrEmpty(yorum.EmailAdresi))
+                                        {
+                                            <small class="text-muted d-block">
+                                                <email-mask email="@yorum.EmailAdresi" show-full="true"></email-mask>
+                                            </small>
+                                        }
+                                    </div>
+                                    <small class="text-muted">#@yorum.YorumId</small>
+                                </div>
+                                <p class="mb-1">@yorum.YorumYazisi</p>
+                                @if (!string.IsNullOrEmpty(yorum.Fotograf))
+                                {
+                                    <img src="@yorum.Fotograf" alt="Yorum Fotoğrafı" class="img-thumbnail" style="max-width: 200px;" />
+                                }
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted">Henüz yorum yapılmamış. İlk yorumu siz yapın!</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <a href="@Url.Action("IkiliAnlasmalar")" class="btn btn-secondary">Geri Dön</a>
+        </div>
+    </div>
+</div>
+
+@if (Model.Okul != null && Model.Okul.Latitude.HasValue && Model.Okul.Longitude.HasValue)
+{
+    @section Scripts {
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+              integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+              crossorigin="" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+                integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+                crossorigin=""></script>
+        <script>
+            var lat = @Model.Okul.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            var lon = @Model.Okul.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            
+            var programMap = L.map('programMap').setView([lat, lon], 12);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 19
+            }).addTo(programMap);
+            
+            var okulAd = @Html.Raw(Json.Serialize(Model.Okul.OkulAd ?? ""));
+            var ulkeIsim = @Html.Raw(Json.Serialize(Model.Okul.Ulke?.UlkeIsim ?? ""));
+            
+            L.marker([lat, lon])
+                .addTo(programMap)
+                .bindPopup('<strong>' + okulAd + '</strong><br>' + ulkeIsim);
+            
+            // URL'de yorum ID'si varsa o yoruma scroll yap
+            // madde 17 - jquery kullanımı
+            $(document).ready(function() {
+                var hash = window.location.hash;
+                if (hash && hash.startsWith('#yorum-')) {
+                    setTimeout(function() {
+                        var targetElement = $(hash);
+                        if (targetElement.length) {
+                            $('html, body').animate({
+                                scrollTop: targetElement.offset().top - 100
+                            }, 500);
+                            // Yorumu vurgula
+                            targetElement.css({
+                                'background-color': '#fff3cd',
+                                'transition': 'background-color 2s'
+                            });
+                            setTimeout(function() {
+                                targetElement.css('background-color', '');
+                            }, 2000);
+                        }
+                    }, 300);
+                }
+            });
+        </script>
+    }
+}
+else
+{
+    @section Scripts {
+        <script>
+            // URL'de yorum ID'si varsa o yoruma scroll yap
+            $(document).ready(function() {
+                var hash = window.location.hash;
+                if (hash && hash.startsWith('#yorum-')) {
+                    setTimeout(function() {
+                        var targetElement = $(hash);
+                        if (targetElement.length) {
+                            $('html, body').animate({
+                                scrollTop: targetElement.offset().top - 100
+                            }, 500);
+                            // Yorumu vurgula
+                            targetElement.css({
+                                'background-color': '#fff3cd',
+                                'transition': 'background-color 2s'
+                            });
+                            setTimeout(function() {
+                                targetElement.css('background-color', '');
+                            }, 2000);
+                        }
+                    }, 300);
+                }
+            });
+        </script>
+    }
+}
+

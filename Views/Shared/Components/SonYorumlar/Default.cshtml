@@ -1,0 +1,36 @@
+@model List<deneme.Models.Yorum>
+
+@if (Model != null && Model.Any())
+{
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Son Yorumlar</h5>
+        </div>
+        <div class="card-body">
+            <ul class="list-unstyled">
+                @foreach (var yorum in Model)
+                {
+                    <li class="mb-3 pb-3 border-bottom">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="flex-grow-1">
+                                <strong>@yorum.KullaniciAdi</strong>
+                                <p class="mb-1">@yorum.YorumYazisi</p>
+                                <small class="text-muted d-block mb-2">
+                                    @yorum.ErasmusProgrami?.Okul?.OkulAd
+                                </small>
+                                @if (yorum.ErasmusProgrami != null)
+                                {
+                                    <a href="@Url.Action("ProgramDetails", "Home", new { area = "", id = yorum.ErasmusProgrami.ErasmusId })#yorum-@yorum.YorumId" 
+                                       class="btn btn-sm btn-primary" target="_blank">
+                                        <i class="fas fa-comment"></i> Yoruma Git
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+

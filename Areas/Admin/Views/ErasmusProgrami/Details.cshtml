@@ -1,0 +1,60 @@
+@model deneme.Models.ErasmusProgrami
+@{
+    ViewData["Title"] = "Erasmus Programı Detayları";
+}
+
+<h2>Erasmus Programı Detayları</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <dl class="row">
+            <dt class="col-sm-3">Erasmus Kodu:</dt>
+            <dd class="col-sm-9">@Model.ErasmusKodu</dd>
+
+            <dt class="col-sm-3">Okul:</dt>
+            <dd class="col-sm-9">@Model.Okul?.OkulAd</dd>
+
+            <dt class="col-sm-3">Ülke:</dt>
+            <dd class="col-sm-9">@Model.Okul?.Ulke?.UlkeIsim</dd>
+
+            <dt class="col-sm-3">Bölüm:</dt>
+            <dd class="col-sm-9">@Model.BolumAdi</dd>
+
+            <dt class="col-sm-3">Dil:</dt>
+            <dd class="col-sm-9">@Model.Dil?.DilAdi</dd>
+
+            <dt class="col-sm-3">Eğitim Seviyeleri:</dt>
+            <dd class="col-sm-9">
+                @if (Model.EgitimSeviyeleri != null && Model.EgitimSeviyeleri.Any())
+                {
+                    @string.Join(", ", Model.EgitimSeviyeleri.Select(es => es.EgitimSeviyesiAdi))
+                }
+                else
+                {
+                    <span class="text-muted">-</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Geçerlilik Tarihi:</dt>
+            <dd class="col-sm-9">@Model.GecerlilikTarihi</dd>
+
+            <dt class="col-sm-3">Güz Nominasyon:</dt>
+            <dd class="col-sm-9">@Model.GuzNomisyon</dd>
+
+            <dt class="col-sm-3">Bahar Nominasyon:</dt>
+            <dd class="col-sm-9">@Model.BaharNomisyon</dd>
+
+            <dt class="col-sm-3">Anlaşma Durumu:</dt>
+            <dd class="col-sm-9">@Model.AnlasmaDurumu</dd>
+        </dl>
+
+        <div class="mt-4">
+            <a asp-action="Edit" asp-route-id="@Model.ErasmusId" class="btn btn-warning">
+                <i class="fas fa-edit"></i> Düzenle
+            </a>
+            <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+        </div>
+    </div>
+</div>
+

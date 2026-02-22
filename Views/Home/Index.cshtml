@@ -1,0 +1,123 @@
+﻿@model IEnumerable<deneme.Models.ErasmusProgrami>
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4">Erasmus Programları</h2>
+            <p class="text-muted">Ana sayfada öne çıkan Erasmus programlarını ve haritada okul konumlarını görüntüleyebilirsiniz.</p>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <a href="@Url.Action("IkiliAnlasmalar")" class="btn btn-primary">
+                <i class="fas fa-list"></i> Tüm Anlaşmaları Görüntüle
+            </a>
+        </div>
+    </div>
+
+    <!-- Harita -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Okul Konumları Haritası</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div id="map" style="width: 100%; height: 500px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var program in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@program.Okul?.OkulAd</h5>
+                        <p class="card-text">
+                            <strong>Ülke:</strong> @program.Okul?.Ulke?.UlkeIsim<br />
+                            <strong>Bölüm:</strong> @program.BolumAdi<br />
+                            <strong>Erasmus Kodu:</strong> @program.ErasmusKodu<br />
+                            <strong>Dil:</strong> @program.Dil?.DilAdi<br />
+                            <strong>Eğitim Seviyeleri:</strong> 
+                            @if (program.EgitimSeviyeleri != null && program.EgitimSeviyeleri.Any())
+                            {
+                                @string.Join(", ", program.EgitimSeviyeleri.Select(es => es.EgitimSeviyesiAdi))
+                            }
+                            else
+                            {
+                                <span class="text-muted">-</span>
+                            }
+                        </p>
+                        <a href="@Url.Action("ProgramDetails", new { id = program.ErasmusId })" class="btn btn-primary">
+                            Detayları Görüntüle
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            @await Component.InvokeAsync("SonYorumlar", new { count = 5 })
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script>
+        var map = L.map('map').setView([50.0, 10.0], 4);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        var okullar = @Html.Raw(Json.Serialize(ViewBag.Okullar));
+        
+        okullar.forEach(function(okul) {
+            if (okul.latitude && okul.longitude) {
+                var marker = L.marker([okul.latitude, okul.longitude]).addTo(map);
+                
+                var popupContent = '<div style="min-width: 200px; text-align: center;">' +
+                    '<strong style="font-size: 14px;">' + okul.okulAd + '</strong><br>' +
+                    '<span style="color: #666; font-size: 12px;">' + okul.ulkeIsim + '</span>';
+                
+                if (okul.erasmusId && okul.erasmusId > 0) {
+                    popupContent += '<br><br>' +
+                        '<a href="/Home/ProgramDetails/' + okul.erasmusId + '" ' +
+                        'class="btn btn-sm btn-primary" style="width: 100%; margin-top: 5px; text-decoration: none; display: inline-block; padding: 5px 10px; border-radius: 4px; background-color: #007bff; color: white; font-size: 12px;">' +
+                        '<i class="fas fa-eye"></i> Detayları Görüntüle</a>';
+                }
+                
+                popupContent += '</div>';
+                
+                marker.bindPopup(popupContent);
+            }
+        });
+
+        // Tüm markerları içeren bounds'u ayarla
+        if (okullar.length > 0) {
+            var group = new L.featureGroup(okullar
+                .filter(o => o.latitude && o.longitude)
+                .map(o => L.marker([o.latitude, o.longitude]))
+            );
+            if (group.getLayers().length > 0) {
+                map.fitBounds(group.getBounds().pad(0.1));
+            }
+        }
+    </script>
+}

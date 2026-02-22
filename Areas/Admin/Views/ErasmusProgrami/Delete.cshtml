@@ -1,0 +1,38 @@
+@model deneme.Models.ErasmusProgrami
+@{
+    ViewData["Title"] = "Erasmus Programı Sil";
+}
+
+<h2>Erasmus Programı Sil</h2>
+<hr />
+
+<h3>Bu programı silmek istediğinizden emin misiniz?</h3>
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">Erasmus Kodu:</dt>
+        <dd class="col-sm-9">@Model.ErasmusKodu</dd>
+
+        <dt class="col-sm-3">Okul:</dt>
+        <dd class="col-sm-9">@Model.Okul?.OkulAd</dd>
+
+        <dt class="col-sm-3">Bölüm:</dt>
+        <dd class="col-sm-9">@Model.BolumAdi</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="ErasmusId" />
+        <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">
+            <i class="fas fa-trash"></i> Sil
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">İptal</a>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        function confirmDelete() {
+            return confirm('Bu programı silmek istediğinizden emin misiniz?');
+        }
+    </script>
+}
+

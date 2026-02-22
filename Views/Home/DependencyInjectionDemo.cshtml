@@ -1,0 +1,126 @@
+@{
+    ViewData["Title"] = "Dependency Injection Demo";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2>Dependency Injection Kullanım Örnekleri</h2>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>DI Kullanım Senaryoları</h5>
+                </div>
+                <div class="card-body">
+                    <h6>1. Constructor Injection</h6>
+                    <p>Controller'larda ve servislerde bağımlılıklar constructor üzerinden inject edilir:</p>
+                    <pre><code>public class HomeController : Controller
+{
+    private readonly IYorumService _yorumService;
+    private readonly IEmailValidationService _emailValidationService;
+    
+    public HomeController(
+        IYorumService yorumService,
+        IEmailValidationService emailValidationService)
+    {
+        _yorumService = yorumService;
+        _emailValidationService = emailValidationService;
+    }
+}</code></pre>
+
+                    <h6 class="mt-4">2. Service Lifetime'ları</h6>
+                    <ul>
+                        <li><strong>Singleton:</strong> Uygulama boyunca tek instance (stateless servisler için)</li>
+                        <li><strong>Scoped:</strong> Her HTTP request için aynı instance (DbContext, Repository'ler için)</li>
+                        <li><strong>Transient:</strong> Her kullanımda yeni instance (hafif, stateless servisler için)</li>
+                    </ul>
+
+                    <h6 class="mt-4">3. Interface ve Implementation</h6>
+                    <p>Interface'ler üzerinden çalışarak loose coupling sağlanır:</p>
+                    <pre><code>// Interface
+public interface IYorumService
+{
+    Task&lt;Yorum&gt; YorumEkleAsync(...);
+}
+
+// Implementation
+public class YorumService : IYorumService
+{
+    // Implementation
+}
+
+// Registration
+builder.Services.AddScoped&lt;IYorumService, YorumService&gt;();</code></pre>
+
+                    <h6 class="mt-4">4. Repository Pattern</h6>
+                    <p>Veri erişim katmanını soyutlamak için Repository Pattern kullanılır:</p>
+                    <pre><code>public interface IErasmusProgramiRepository
+{
+    Task&lt;ErasmusProgrami?&gt; GetByIdAsync(int id);
+    Task&lt;List&lt;ErasmusProgrami&gt;&gt; SearchAsync(string term);
+}
+
+// Controller'da kullanım
+var program = await _programRepository.GetByIdAsync(id);</code></pre>
+
+                    <h6 class="mt-4">5. Service Katmanı</h6>
+                    <p>İş mantığı servislerde toplanır:</p>
+                    <ul>
+                        <li><strong>YorumService:</strong> Yorum işlemleri</li>
+                        <li><strong>OkulService:</strong> Okul işlemleri</li>
+                        <li><strong>EmailValidationService:</strong> E-posta validasyonu</li>
+                        <li><strong>CacheService:</strong> Cache yönetimi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Program.cs'de Service Registration</h5>
+                </div>
+                <div class="card-body">
+                    <pre><code>// Scoped Lifetime (Her HTTP request için yeni instance)
+builder.Services.AddScoped&lt;IYorumService, YorumService&gt;();
+builder.Services.AddScoped&lt;IOkulService, OkulService&gt;();
+builder.Services.AddScoped&lt;IErasmusProgramiRepository, ErasmusProgramiRepository&gt;();
+
+// Singleton Lifetime (Uygulama boyunca tek instance)
+builder.Services.AddSingleton&lt;IEmailValidationService, EmailValidationService&gt;();
+builder.Services.AddSingleton&lt;ICacheService, MemoryCacheService&gt;();
+
+// Transient Lifetime (Her kullanımda yeni instance)
+// builder.Services.AddTransient&lt;ISomeService, SomeService&gt;();</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Avantajlar</h5>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Loose Coupling:</strong> Sınıflar birbirine sıkı bağlı değil</li>
+                        <li><strong>Testability:</strong> Mock'lar kolayca inject edilebilir</li>
+                        <li><strong>Maintainability:</strong> Kod bakımı ve değişiklik kolay</li>
+                        <li><strong>Flexibility:</strong> Implementation'lar kolayca değiştirilebilir</li>
+                        <li><strong>Separation of Concerns:</strong> Her katman kendi sorumluluğuna odaklanır</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

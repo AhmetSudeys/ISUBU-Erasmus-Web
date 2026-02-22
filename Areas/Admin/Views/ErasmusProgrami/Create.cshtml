@@ -1,0 +1,416 @@
+@model deneme.Models.ErasmusProgrami
+@{
+    ViewData["Title"] = "Yeni Erasmus Programı";
+}
+
+<h2>Yeni Erasmus Programı Ekle</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger"></div>
+            
+            <div class="mb-3">
+                <label asp-for="OkulId" class="form-label">Okul</label>
+                <div class="input-group">
+                    <select asp-for="OkulId" id="OkulId" class="form-select" asp-items="ViewBag.OkulId" required>
+                        <option value="">-- Okul Seçin --</option>
+                    </select>
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#yeniOkulModal">
+                        <i class="fas fa-plus"></i> Yeni Okul Ekle
+                    </button>
+                </div>
+                <span asp-validation-for="OkulId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="BolumAdi" class="form-label">Bölüm Adı</label>
+                <input asp-for="BolumAdi" class="form-control" />
+                <span asp-validation-for="BolumAdi" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ErasmusKodu" class="form-label">Erasmus Kodu</label>
+                <input asp-for="ErasmusKodu" class="form-control" required />
+                <span asp-validation-for="ErasmusKodu" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="GecerlilikTarihi" class="form-label">Geçerlilik Tarihi</label>
+                    <input asp-for="GecerlilikTarihi" class="form-control" />
+                    <span asp-validation-for="GecerlilikTarihi" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="DilId" class="form-label">Dil</label>
+                    <select asp-for="DilId" class="form-select" asp-items="ViewBag.DilId" required>
+                    </select>
+                    <span asp-validation-for="DilId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="AnlasmaDurumu" class="form-label">Anlaşma Durumu</label>
+                <input asp-for="AnlasmaDurumu" class="form-control" />
+                <span asp-validation-for="AnlasmaDurumu" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="GuzNomisyon" class="form-label">Güz Nominasyon</label>
+                <input asp-for="GuzNomisyon" class="form-control" />
+                <span asp-validation-for="GuzNomisyon" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="BaharNomisyon" class="form-label">Bahar Nominasyon</label>
+                <input asp-for="BaharNomisyon" class="form-control" />
+                <span asp-validation-for="BaharNomisyon" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="KontenjanDetayi" class="form-label">Kontenjan Detayı</label>
+                <textarea asp-for="KontenjanDetayi" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="KontenjanDetayi" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Yeni Okul Ekleme Modal -->
+<div class="modal fade" id="yeniOkulModal" tabindex="-1" aria-labelledby="yeniOkulModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="yeniOkulModalLabel">Yeni Okul Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="yeniOkulForm">
+                    <div class="mb-3">
+                        <label for="OkulAd" class="form-label">Okul Adı <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="OkulAd" name="OkulAd" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="UlkeId" class="form-label">Ülke <span class="text-danger">*</span></label>
+                        <select class="form-select" id="UlkeId" name="UlkeId" required>
+                            <option value="">-- Ülke Seçin --</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="InternetSitesi" class="form-label">İnternet Sitesi <span class="text-danger">*</span></label>
+                        <input type="url" class="form-control" id="InternetSitesi" name="InternetSitesi" placeholder="https://www.example.com" required />
+                        <small class="form-text text-muted">Geçerli bir URL giriniz (örn: http://www.example.com veya https://www.example.com)</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Konum Bilgisi <span class="text-danger">*</span></label>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> Haritaya tıklayarak okulun konumunu seçebilirsiniz veya koordinatları manuel olarak girebilirsiniz.
+                        </div>
+                        <div id="modalOkulMap" style="width: 100%; height: 300px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px;"></div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="Latitude" class="form-label">Enlem (Latitude) <span class="text-danger">*</span></label>
+                                <input type="number" step="0.0001" class="form-control" id="Latitude" name="Latitude" placeholder="37.7648" min="-90" max="90" required />
+                                <small class="form-text text-muted">Haritaya tıklayarak otomatik doldurulur (-90 ile 90 arası)</small>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="Longitude" class="form-label">Boylam (Longitude) <span class="text-danger">*</span></label>
+                                <input type="number" step="0.0001" class="form-control" id="Longitude" name="Longitude" placeholder="30.5566" min="-180" max="180" required />
+                                <small class="form-text text-muted">Haritaya tıklayarak otomatik doldurulur (-180 ile 180 arası)</small>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-secondary" onclick="clearModalLocation()">
+                            <i class="fas fa-times"></i> Konumu Temizle
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-primary" onclick="saveNewOkul()">
+                    <i class="fas fa-save"></i> Kaydet
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script>
+        var modalMap = null;
+        var modalMarker = null;
+
+        // Koordinat input'larında virgülü otomatik noktaya çevir
+        function setupCoordinateInputs() {
+            var latInput = document.getElementById('Latitude');
+            var lngInput = document.getElementById('Longitude');
+            
+            if (latInput) {
+                latInput.addEventListener('blur', function() {
+                    if (this.value.includes(',')) {
+                        this.value = this.value.replace(',', '.');
+                    }
+                });
+            }
+            
+            if (lngInput) {
+                lngInput.addEventListener('blur', function() {
+                    if (this.value.includes(',')) {
+                        this.value = this.value.replace(',', '.');
+                    }
+                });
+            }
+        }
+
+        // Modal açıldığında haritayı başlat
+        document.getElementById('yeniOkulModal').addEventListener('shown.bs.modal', function() {
+            if (!modalMap) {
+                modalMap = L.map('modalOkulMap').setView([50.0, 10.0], 3);
+                
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    maxZoom: 19
+                }).addTo(modalMap);
+
+                // Haritaya tıklandığında marker ekle/güncelle
+                modalMap.on('click', function(e) {
+                    var lat = e.latlng.lat;
+                    var lng = e.latlng.lng;
+                    
+                    document.getElementById('Latitude').value = lat.toFixed(4);
+                    document.getElementById('Longitude').value = lng.toFixed(4);
+                    
+                    if (modalMarker) {
+                        modalMarker.setLatLng([lat, lng]);
+                    } else {
+                        modalMarker = L.marker([lat, lng]).addTo(modalMap);
+                    }
+                    
+                    modalMarker.bindPopup('Seçilen Konum<br>Lat: ' + lat.toFixed(4) + ', Lng: ' + lng.toFixed(4)).openPopup();
+                });
+            } else {
+                modalMap.invalidateSize();
+            }
+
+            // Ülkeleri yükle
+            loadUlkeler();
+            
+            // Koordinat input'larını ayarla
+            setupCoordinateInputs();
+        });
+
+        // Modal kapandığında formu temizle
+        document.getElementById('yeniOkulModal').addEventListener('hidden.bs.modal', function() {
+            document.getElementById('yeniOkulForm').reset();
+            if (modalMarker) {
+                modalMap.removeLayer(modalMarker);
+                modalMarker = null;
+            }
+        });
+
+        function loadUlkeler() {
+            fetch('/Admin/ErasmusProgrami/GetUlkeler')
+                .then(response => response.json())
+                .then(data => {
+                    var select = document.getElementById('UlkeId');
+                    select.innerHTML = '<option value="">-- Ülke Seçin --</option>';
+                    data.forEach(function(ulke) {
+                        var option = document.createElement('option');
+                        option.value = ulke.ulkeId;
+                        option.textContent = ulke.ulkeIsim;
+                        select.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Ülkeler yüklenirken hata:', error));
+        }
+
+        function clearModalLocation() {
+            document.getElementById('Latitude').value = '';
+            document.getElementById('Longitude').value = '';
+            if (modalMarker) {
+                modalMap.removeLayer(modalMarker);
+                modalMarker = null;
+            }
+        }
+
+        function saveNewOkul() {
+            var form = document.getElementById('yeniOkulForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            // UlkeId kontrolü
+            var ulkeIdValue = document.getElementById('UlkeId').value;
+            if (!ulkeIdValue || ulkeIdValue === '') {
+                alert('Lütfen bir ülke seçin.');
+                return;
+            }
+
+            var ulkeId = parseInt(ulkeIdValue);
+            if (isNaN(ulkeId) || ulkeId <= 0) {
+                alert('Geçersiz ülke seçimi.');
+                return;
+            }
+
+            // Koordinatları parse et ve kontrol et (Zorunlu)
+            var latValue = document.getElementById('Latitude').value;
+            var lngValue = document.getElementById('Longitude').value;
+            
+            if (!latValue || latValue.trim() === '') {
+                alert('Lütfen geçerli bir enlem (Latitude) değeri giriniz. Haritaya tıklayarak veya manuel olarak girebilirsiniz.');
+                document.getElementById('Latitude').focus();
+                return;
+            }
+            
+            // Virgülü noktaya çevir
+            latValue = latValue.replace(',', '.');
+            var latitude = parseFloat(latValue);
+            if (isNaN(latitude)) {
+                alert('Geçersiz enlem değeri. Lütfen sayısal bir değer giriniz.');
+                document.getElementById('Latitude').focus();
+                return;
+            }
+            
+            if (latitude < -90 || latitude > 90) {
+                alert('Enlem değeri -90 ile 90 arasında olmalıdır.');
+                document.getElementById('Latitude').focus();
+                return;
+            }
+            
+            if (!lngValue || lngValue.trim() === '') {
+                alert('Lütfen geçerli bir boylam (Longitude) değeri giriniz. Haritaya tıklayarak veya manuel olarak girebilirsiniz.');
+                document.getElementById('Longitude').focus();
+                return;
+            }
+            
+            // Virgülü noktaya çevir
+            lngValue = lngValue.replace(',', '.');
+            var longitude = parseFloat(lngValue);
+            if (isNaN(longitude)) {
+                alert('Geçersiz boylam değeri. Lütfen sayısal bir değer giriniz.');
+                document.getElementById('Longitude').focus();
+                return;
+            }
+            
+            if (longitude < -180 || longitude > 180) {
+                alert('Boylam değeri -180 ile 180 arasında olmalıdır.');
+                document.getElementById('Longitude').focus();
+                return;
+            }
+            
+            // URL kontrolü
+            var internetSitesi = document.getElementById('InternetSitesi').value.trim();
+            if (internetSitesi && !internetSitesi.match(/^https?:\/\/.+/i)) {
+                // Eğer http:// veya https:// ile başlamıyorsa ekle
+                if (!internetSitesi.startsWith('http://') && !internetSitesi.startsWith('https://')) {
+                    internetSitesi = 'https://' + internetSitesi;
+                }
+            }
+
+            var formData = {
+                OkulAd: document.getElementById('OkulAd').value.trim(),
+                UlkeId: ulkeId,
+                InternetSitesi: internetSitesi,
+                Latitude: latitude,
+                Longitude: longitude
+            };
+
+            console.log('Gönderilen formData:', formData);
+            console.log('UlkeId değeri:', ulkeId, 'Tipi:', typeof ulkeId);
+
+            fetch('/Admin/ErasmusProgrami/CreateOkul', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw err; });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    // Dropdown'a yeni okulu ekle
+                    var select = document.getElementById('OkulId');
+                    var option = document.createElement('option');
+                    option.value = data.okulId;
+                    option.textContent = data.okulAd;
+                    option.selected = true;
+                    select.appendChild(option);
+
+                    // Modal'ı kapat
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('yeniOkulModal'));
+                    modal.hide();
+
+                    alert('Okul başarıyla eklendi!');
+                } else {
+                    var errorMsg = data.errors && data.errors.length > 0 
+                        ? data.errors.join(', ') 
+                        : (data.error || 'Okul eklenirken bir hata oluştu.');
+                    alert('Hata: ' + errorMsg);
+                }
+            })
+            .catch(error => {
+                console.error('Hata:', error);
+                var errorMsg = error.errors && error.errors.length > 0 
+                    ? error.errors.join(', ') 
+                    : (error.message || 'Okul eklenirken bir hata oluştu.');
+                alert('Hata: ' + errorMsg);
+            });
+        }
+
+        // Form submit kontrolü
+        $(document).ready(function() {
+            $('form[action*="Create"]').on('submit', function(e) {
+                console.log('Form submit edildi');
+                
+                var okulId = $('#OkulId').val();
+                var erasmusKodu = $('input[name="ErasmusKodu"]').val();
+                
+                console.log('OkulId:', okulId);
+                console.log('ErasmusKodu:', erasmusKodu);
+                
+                // Zorunlu alan kontrolü
+                if (!okulId || okulId === '' || okulId === '0') {
+                    e.preventDefault();
+                    alert('Lütfen bir okul seçiniz.');
+                    $('#OkulId').focus();
+                    return false;
+                }
+                
+                if (!erasmusKodu || erasmusKodu.trim() === '') {
+                    e.preventDefault();
+                    alert('Erasmus Kodu zorunludur.');
+                    $('input[name="ErasmusKodu"]').focus();
+                    return false;
+                }
+                
+                // Dil otomatik olarak İngilizce olarak ayarlanacak, kontrol gerekmez
+                
+                console.log('Form validation başarılı, gönderiliyor...');
+            });
+        });
+    </script>
+}
+

@@ -1,0 +1,411 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\areas\\admin\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:areas\\admin\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\wwwroot\\js\\admin.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:wwwroot\\js\\admin.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\areas\\admin\\views\\okul\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:areas\\admin\\views\\okul\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\areas\\admin\\views\\erasmusprogrami\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:areas\\admin\\views\\erasmusprogrami\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\views\\home\\baglantilar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:views\\home\\baglantilar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\areas\\admin\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:areas\\admin\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\views\\home\\yorumekle.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:views\\home\\yorumekle.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\taghelpers\\buttontaghelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:taghelpers\\buttontaghelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\helpers\\customhtmlhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:helpers\\customhtmlhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\deneme.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:deneme.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\wwwroot\\css\\admin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:wwwroot\\css\\admin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\services\\iokulservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:services\\iokulservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\services\\okulservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:services\\okulservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\models\\yorum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:models\\yorum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\views\\home\\ara.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:views\\home\\ara.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|c:\\users\\soylu\\onedrive\\masa\u00FCst\u00FC\\deneme\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9D39B4E8-E586-312D-C075-C6D3468A2506}|deneme.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAApwFAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T13:51:19.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "admin.js",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\wwwroot\\js\\admin.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\admin.js",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\wwwroot\\js\\admin.js",
+              "RelativeToolTip": "wwwroot\\js\\admin.js",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACIAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-07T13:48:05.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_AdminLayout.cshtml",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
+              "ViewState": "AgIAADUAAAAAAAAAAAApwEoAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-07T13:47:09.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Areas\\Admin\\Views\\Okul\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Okul\\Index.cshtml",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Areas\\Admin\\Views\\Okul\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Okul\\Index.cshtml",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAEwIgAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-07T13:46:04.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Areas\\Admin\\Views\\ErasmusProgrami\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\ErasmusProgrami\\Index.cshtml",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Areas\\Admin\\Views\\ErasmusProgrami\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\ErasmusProgrami\\Index.cshtml",
+              "ViewState": "AgIAAMMAAAAAAAAAAAAEwMcAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-07T13:45:51.012Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Areas\\Admin\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Areas\\Admin\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-07T13:32:38.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ButtonTagHelper.cs",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\TagHelpers\\ButtonTagHelper.cs",
+              "RelativeDocumentMoniker": "TagHelpers\\ButtonTagHelper.cs",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\TagHelpers\\ButtonTagHelper.cs",
+              "RelativeToolTip": "TagHelpers\\ButtonTagHelper.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T13:28:55.595Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "admin.css",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\wwwroot\\css\\admin.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\admin.css",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\wwwroot\\css\\admin.css",
+              "RelativeToolTip": "wwwroot\\css\\admin.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-07T11:53:30.416Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IOkulService.cs",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Services\\IOkulService.cs",
+              "RelativeDocumentMoniker": "Services\\IOkulService.cs",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Services\\IOkulService.cs",
+              "RelativeToolTip": "Services\\IOkulService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAiwA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T11:49:26.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "OkulService.cs",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Services\\OkulService.cs",
+              "RelativeDocumentMoniker": "Services\\OkulService.cs",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Services\\OkulService.cs",
+              "RelativeToolTip": "Services\\OkulService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T11:48:56.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Yorum.cs",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Models\\Yorum.cs",
+              "RelativeDocumentMoniker": "Models\\Yorum.cs",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Models\\Yorum.cs",
+              "RelativeToolTip": "Models\\Yorum.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwB4AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T11:45:03.056Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAawDUAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T11:36:48.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T11:36:17.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-07T11:08:57.642Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Ara.cshtml",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Views\\Home\\Ara.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Ara.cshtml",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Views\\Home\\Ara.cshtml",
+              "RelativeToolTip": "Views\\Home\\Ara.cshtml",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAACgAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-07T11:08:55.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CustomHtmlHelpers.cs",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Helpers\\CustomHtmlHelpers.cs",
+              "RelativeDocumentMoniker": "Helpers\\CustomHtmlHelpers.cs",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Helpers\\CustomHtmlHelpers.cs*",
+              "RelativeToolTip": "Helpers\\CustomHtmlHelpers.cs*",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBYAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T11:06:26.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "YorumEkle.cshtml",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Views\\Home\\YorumEkle.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\YorumEkle.cshtml",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Views\\Home\\YorumEkle.cshtml",
+              "RelativeToolTip": "Views\\Home\\YorumEkle.cshtml",
+              "ViewState": "AgIAAAoAAAAAAAAAAIAwwBwAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-07T11:05:57.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Baglantilar.cshtml",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Views\\Home\\Baglantilar.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Baglantilar.cshtml",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Views\\Home\\Baglantilar.cshtml",
+              "RelativeToolTip": "Views\\Home\\Baglantilar.cshtml",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAlwJYAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-07T11:02:32.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Data\\AppDbContext.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAWwCgAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T10:51:54.819Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAvwB4AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T10:51:15.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-07T10:51:12.396Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "deneme.csproj",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\deneme.csproj",
+              "RelativeDocumentMoniker": "deneme.csproj",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\deneme.csproj",
+              "RelativeToolTip": "deneme.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-07T10:01:03.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\soylu\\OneDrive\\Masa\u00FCst\u00FC\\deneme\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAGkAAAAAAAAAAAApwHwAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-30T17:41:26.844Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+@{
+    ViewData["Title"] = "İletişim";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4">İletişim</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Sol Kolon - İletişim Bilgileri -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="mb-4">İletişim Bilgileri</h4>
+                    
+                    <div class="mb-3">
+                        <i class="fas fa-phone text-primary me-2"></i>
+                        <strong>Telefon:</strong><br>
+                        <a href="tel:+902462146586">+90 246 214 6586</a><br>
+                        <a href="tel:+902462146587">+90 246 214 6587</a><br>
+                        <a href="tel:+902462146599">+90 246 214 6599</a>
+                    </div>
+
+                    <div class="mb-3">
+                        <i class="fas fa-envelope text-primary me-2"></i>
+                        <strong>E-Posta:</strong><br>
+                        <a href="mailto:erasmus@isparta.edu.tr">erasmus@isparta.edu.tr</a>
+                    </div>
+
+                    <div class="mb-3">
+                        <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                        <strong>Adres:</strong><br>
+                        Isparta Uygulamalı Bilimler Üniversitesi,<br>
+                        Orman Fakültesi Binası,<br>
+                        Doğu Kampüsü Çünür/Isparta
+                    </div>
+
+                    <hr>
+
+                    <h5 class="mb-3">İletişim Numaraları:</h5>
+                    <p class="mb-2"><strong>Erasmus Kurum Koordinatörlüğü Ofis Numaraları:</strong></p>
+                    <p class="mb-1">+90 246 214 6586</p>
+                    <p class="mb-1">+90 246 214 6587</p>
+                    <p class="mb-3">+90 246 214 6048</p>
+
+                    <div class="alert alert-info mt-4">
+                        <strong>GERİ BİLDİRİMLERİNİZ İÇİN YANDAKİ FORMU DOLDURUNUZ >>></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sağ Kolon - İletişim Formu -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="mb-4">İletişim Formu</h4>
+                    <form id="iletisimForm">
+                        <div class="mb-3">
+                            <label for="adSoyad" class="form-label">Ad Soyad <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="adSoyad" name="adSoyad" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="telefon" class="form-label">Telefon</label>
+                            <input type="tel" class="form-control" id="telefon" name="telefon">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-Posta <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="konu" class="form-label">Konu Başlığı <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="konu" name="konu" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="mesaj" class="form-label">Mesaj <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="mesaj" name="mesaj" rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-paper-plane"></i> Mesaj Gönder
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Harita Bölümü -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-0">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3047.5!2d30.5377543!3d37.8321242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c5b7d2ca533ae1%3A0x853b78caf8a98d02!2zQ8O8bsO8ciwgMzIyNjAgSXNwYXJ0YSBNZXJrZXovSXNwYXJ0YQ!5e0!3m2!1str!2str!4v1704896000000!5m2!1str!2str&q=37.8321242,30.5377543" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">ISUBÜ Orman Fakültesi</h5>
+                            <p class="mb-0 text-muted">Çünür, 32260 Isparta Merkez/Isparta</p>
+                        </div>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=37.8321242,30.5377543" 
+                           target="_blank" 
+                           class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-directions"></i> Yol Tarifi
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('iletisimForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Form verilerini al
+            var formData = {
+                adSoyad: document.getElementById('adSoyad').value,
+                telefon: document.getElementById('telefon').value,
+                email: document.getElementById('email').value,
+                konu: document.getElementById('konu').value,
+                mesaj: document.getElementById('mesaj').value
+            };
+
+            // Burada form verilerini sunucuya gönderebilirsiniz
+            // Şimdilik sadece alert gösteriyoruz
+            alert('Mesajınız alındı! Teşekkür ederiz.\n\n' + 
+                  'Ad Soyad: ' + formData.adSoyad + '\n' +
+                  'E-Posta: ' + formData.email + '\n' +
+                  'Konu: ' + formData.konu);
+            
+            // Formu temizle
+            this.reset();
+        });
+    </script>
+}
+

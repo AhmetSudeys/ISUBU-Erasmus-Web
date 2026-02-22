@@ -1,0 +1,192 @@
+@{
+    ViewData["Title"] = "Baglantilar ";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2>Baglantilar</h2>
+            <hr />
+        </div>
+    </div>
+
+    <!-- HTML Helper Örnekleri -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3>Okul Bağlantıları</h3>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Bağlantılar</h5>
+                </div>
+                <div class="card-body">
+                    <h6>https://erasmus.isparta.edu.tr</h6>
+                    @Html.Label("test", "https://erasmus.isparta.edu.tr", new { @class = "form-label" })
+                    <br />
+                    @Html.Display("Test Value")
+                    <br /><br />
+                    <!-- madde 9 html helper -->
+                    <h6>Mail gir</h6>
+                    @Html.TextBox("testInput", "Test Value", new { @class = "form-control", placeholder = "Test input" })
+                    <br /><br />
+                    @Html.TextArea("testArea", "mailinizi giriniz", 3, 10, new { @class = "form-control" })
+                    <br /><br />
+
+                    <h6>Danışmanlar:</h6>
+                    @{
+                        var items = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Serdar PAÇACI", Value = "1" },
+                            new SelectListItem { Text = "Rafet GÖZBAŞI", Value = "2" },
+                            new SelectListItem { Text = "Cevriye ALTINTAŞ", Value = "3" }
+                        };
+                    }
+                    @Html.DropDownList("testSelect", items, "Seçiniz...", new { @class = "form-select" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- madde 10 Custom HTML Helper Örnekleri -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3>Erasmus Bağlantıları</h3>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Mailler</h5>
+                </div>
+                <div class="card-body">
+                    <h6>Bilgiler</h6>
+                    @Html.Badge("Ön Lisans", "primary")
+                    @Html.Badge("Lisans", "success")
+                    @Html.Badge("Yüksek Lisans", "warning")
+                    @Html.Badge("Doktora", "danger")
+                    <br /><br />
+
+                    <h6>Not</h6>
+                    @Html.Alert("Bu bir bilgi mesajıdır.", "info")
+                    <br />
+                    @Html.Alert("Lütfen mesai saatleri içerisinde iletişime geçiniz..", "success")
+                    <br /><br />
+
+                    <h6>İletişim Bağlantıları</h6>
+                    @Html.IconButton("İnstagram", "fas fa-eye", "info", "#")
+                    @Html.IconButton("Twitter", "fas fa-edit", "warning", "#")
+                    @Html.IconButton("Facebook", "fas fa-trash", "danger", "#")
+                    <br /><br />
+
+                    <h6>Bize ulaşın:</h6>
+                    @Html.EmailLink("rafetgozbasi@isparta.edu.tr", "Rafet Gözbaşı")
+                    <br /><br />
+
+                    <h6>Erişim Tarihi</h6>
+                    @Html.FormatDate(DateTime.Now, "dd.MM.yyyy HH:mm")
+                    <br />
+                    @Html.FormatDate(null)
+                    <br /><br />
+
+                    <h6>Müsaitlik Durumu</h6>
+                    @Html.StatusBadge("Aktif")
+                    @Html.StatusBadge("Pasif")
+                    @Html.StatusBadge("Beklemede")
+                    <br /><br />
+
+                    <h6>Danışman Bilgileri</h6>
+
+                    @Html.Card(
+                             "Danışman Bilgileri",
+                             Html.Raw(@"
+                    <p><strong>Adı Soyadı:</strong> Arş. Gör. Rafet GÖZBAŞI</p>
+                    <p><strong>Birimi:</strong> Teknoloji Fakültesi</p>
+                    <p><strong>Bölüm:</strong> Bilgisayar Mühendisliği Bölüm Başkanlığı</p>
+                    <p><strong>Ana Bilim Dalı:</strong> Bilgisayar Yazılımı Anabilimdalı Başkanlığı</p>
+                    <p><strong>Telefon:</strong> 0246 214 67 82</p>
+                    ")
+                             )
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- madde 11 - Tag Helper Örnekleri -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3>Okul Erasmus Bilgileri</h3>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Erasmus Bilgileri</h5>
+                </div>
+                <div class="card-body">
+                    <h6>Erasmus Kodu</h6>
+                    <form asp-action="HelperDemo" method="post">
+                        <div class="mb-3">
+                         
+                            <input name="testCode" id="testCode" class="form-control" placeholder="ER-12345" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Gönder</button>
+                    </form>
+                    <br />
+
+                    <h6>Anasayfaya Dön</h6>
+                    <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Ana Sayfa</a>
+                    <br /><br />
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- madde 12 - Custom Tag Helper Örnekleri -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3>Başvuru Örneği</h3>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Örnek Başvuru</h5>
+                </div>
+                <div class="card-body">
+                    <h6>Ülke Bayrağı</h6>
+                    <country-flag country-name="Türkiye" flag-url="https://flagcdn.com/w40/tr.png" size="32"></country-flag>
+                    <br /><br />
+
+                    <h6>Başvuru Metni</h6>
+                    <truncate length="50">
+                        Konu: Erasmus+ Öğrenim Hareketliliği Başvurusu
+
+                        Sayın Erasmus Koordinatörlüğü,
+
+                        Ben [Mevcut Üniversiteniz], [Bölümünüz] öğrencisi [Adınız Soyadınız]. 2025-2026 akademik yılında [Gitmek İstediğiniz Üniversite] bünyesinde Erasmus eğitimi almak için başvuruda bulunuyorum.
+
+                        Akademik kariyerimi uluslararası bir bakış açısıyla zenginleştirmek ve özellikle [İlgi Duyduğunuz Alan/Ders] konusundaki eğitim olanaklarınızdan faydalanmak istiyorum. Bu deneyimin hem yabancı dil yetkinliğimi artıracağına hem de farklı kültürlerle iletişim becerilerimi geliştirerek kariyerime büyük katkı sağlayacağına inanıyorum.
+
+                        Başvurumu değerlendirdiğiniz için teşekkür ederim.
+
+                        Saygılarımla,
+                    </truncate>
+                    <br /><br />
+
+                    <h6>Erişim Tarihi</h6>
+                    <date-format date="@DateTime.Now" format="dd.MM.yyyy HH:mm"></date-format>
+                    <br />
+                    <date-format date="@null" empty-text="Tarih yok"></date-format>
+                    <br /><br />
+
+                    <h6>Email</h6>
+                    <email-mask email="test@example.com"></email-mask>
+                    <br />
+                    <email-mask email="test@example.com" show-full="true"></email-mask>
+                    <br /><br />
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

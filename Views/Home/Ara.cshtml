@@ -1,0 +1,75 @@
+@model IEnumerable<deneme.Models.ErasmusProgrami>
+@{
+    ViewData["Title"] = "Arama Sonuçları";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4">Arama Sonuçları</h2>
+            @if (!string.IsNullOrEmpty(ViewBag.SearchTerm))
+            {
+                <p class="text-muted">
+                    "<strong>@ViewBag.SearchTerm</strong>" için <strong>@ViewBag.ResultCount</strong> sonuç bulundu.
+                </p>
+            }
+        </div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row">
+            @foreach (var program in Model)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <country-flag country-name="@program.Okul?.Ulke?.UlkeIsim"></country-flag>
+                                @program.Okul?.OkulAd
+                            </h5>
+                            <p class="card-text">
+                                <strong>Ülke:</strong> @program.Okul?.Ulke?.UlkeIsim<br />
+                                <strong>Bölüm:</strong> @program.BolumAdi<br />
+                                <strong>Erasmus Kodu:</strong> <span class="badge bg-secondary">@program.ErasmusKodu</span><br />
+                                <strong>Dil:</strong> @Html.Badge(program.Dil?.DilAdi ?? "N/A", "info")<br />
+                                <strong>Eğitim Seviyeleri:</strong> 
+                                @if (program.EgitimSeviyeleri != null && program.EgitimSeviyeleri.Any())
+                                {
+                                    @string.Join(", ", program.EgitimSeviyeleri.Select(es => es.EgitimSeviyesiAdi))
+                                }
+                                else
+                                {
+                                    <span class="text-muted">-</span>
+                                }
+                            </p>
+                            <a href="@Url.Action("ProgramDetails", new { id = program.ErasmusId })" class="btn btn-primary">
+                                <i class="fas fa-eye"></i> Detayları Görüntüle
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i> 
+                    Arama kriterlerinize uygun sonuç bulunamadı. Lütfen farklı bir arama terimi deneyin.
+                </div>
+                <div class="mt-3">
+                    <a href="@Url.Action("IkiliAnlasmalar")" class="btn btn-primary">
+                        <i class="fas fa-list"></i> Tüm Anlaşmaları Görüntüle
+                    </a>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> Ana Sayfaya Dön
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

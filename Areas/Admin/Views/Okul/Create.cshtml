@@ -1,0 +1,191 @@
+@model deneme.Models.Okul
+@{
+    ViewData["Title"] = "Yeni Okul Ekle";
+}
+
+<h2>Yeni Okul Ekle</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger"></div>
+            
+            <div class="mb-3">
+                <label asp-for="OkulAd" class="form-label">Okul Adı <span class="text-danger">*</span></label>
+                <input asp-for="OkulAd" class="form-control" required />
+                <span asp-validation-for="OkulAd" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="UlkeId" class="form-label">Ülke <span class="text-danger">*</span></label>
+                <select asp-for="UlkeId" asp-items="ViewBag.Ulkeler" class="form-select" required>
+                    <option value="">-- Ülke Seçin --</option>
+                </select>
+                <span asp-validation-for="UlkeId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="InternetSitesi" class="form-label">İnternet Sitesi <span class="text-danger">*</span></label>
+                <input asp-for="InternetSitesi" type="url" class="form-control" placeholder="https://www.example.com" required />
+                <span asp-validation-for="InternetSitesi" class="text-danger"></span>
+                <small class="form-text text-muted">Geçerli bir URL giriniz (örn: http://www.example.com veya https://www.example.com)</small>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Konum Bilgisi <span class="text-danger">*</span></label>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i> Haritaya tıklayarak okulun konumunu seçebilirsiniz veya koordinatları manuel olarak girebilirsiniz.
+                </div>
+                <div id="okulMap" style="width: 100%; height: 400px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px;"></div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Latitude" class="form-label">Enlem (Latitude) <span class="text-danger">*</span></label>
+                        <input asp-for="Latitude" type="number" step="0.0001" id="latitudeInput" name="Latitude" class="form-control" placeholder="37.7648" min="-90" max="90" required />
+                        <span asp-validation-for="Latitude" class="text-danger"></span>
+                        <small class="form-text text-muted">Haritaya tıklayarak otomatik doldurulur (-90 ile 90 arası)</small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Longitude" class="form-label">Boylam (Longitude) <span class="text-danger">*</span></label>
+                        <input asp-for="Longitude" type="number" step="0.0001" id="longitudeInput" name="Longitude" class="form-control" placeholder="30.5566" min="-180" max="180" required />
+                        <span asp-validation-for="Longitude" class="text-danger"></span>
+                        <small class="form-text text-muted">Haritaya tıklayarak otomatik doldurulur (-180 ile 180 arası)</small>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-sm btn-secondary" onclick="clearLocation()">
+                    <i class="fas fa-times"></i> Konumu Temizle
+                </button>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Kaydet
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script>
+        var map = L.map('okulMap').setView([50.0, 10.0], 3);
+        var marker = null;
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Haritaya tıklandığında marker ekle/güncelle
+        map.on('click', function(e) {
+            var lat = e.latlng.lat;
+            var lng = e.latlng.lng;
+            
+            // Koordinatları input alanlarına yaz
+            document.getElementById('latitudeInput').value = lat.toFixed(4);
+            document.getElementById('longitudeInput').value = lng.toFixed(4);
+            
+            // Marker'ı güncelle veya oluştur
+            if (marker) {
+                marker.setLatLng([lat, lng]);
+            } else {
+                marker = L.marker([lat, lng]).addTo(map);
+            }
+            
+            marker.bindPopup('Seçilen Konum<br>Lat: ' + lat.toFixed(4) + ', Lng: ' + lng.toFixed(4)).openPopup();
+        });
+
+        // Manuel koordinat girildiğinde haritayı güncelle
+        document.getElementById('latitudeInput').addEventListener('change', updateMarkerFromInputs);
+        document.getElementById('longitudeInput').addEventListener('change', updateMarkerFromInputs);
+
+        function updateMarkerFromInputs() {
+            var lat = parseFloat(document.getElementById('latitudeInput').value);
+            var lng = parseFloat(document.getElementById('longitudeInput').value);
+            
+            if (!isNaN(lat) && !isNaN(lng) && lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180) {
+                if (marker) {
+                    marker.setLatLng([lat, lng]);
+                } else {
+                    marker = L.marker([lat, lng]).addTo(map);
+                }
+                map.setView([lat, lng], 10);
+                marker.bindPopup('Seçilen Konum<br>Lat: ' + lat.toFixed(4) + ', Lng: ' + lng.toFixed(4)).openPopup();
+            }
+        }
+
+        function clearLocation() {
+            document.getElementById('latitudeInput').value = '';
+            document.getElementById('longitudeInput').value = '';
+            if (marker) {
+                map.removeLayer(marker);
+                marker = null;
+            }
+        }
+
+        // Sayfa yüklendiğinde mevcut koordinatları kontrol et
+        window.addEventListener('load', function() {
+            var lat = parseFloat(document.getElementById('latitudeInput').value);
+            var lng = parseFloat(document.getElementById('longitudeInput').value);
+            if (!isNaN(lat) && !isNaN(lng)) {
+                updateMarkerFromInputs();
+            }
+        });
+
+        // Form gönderilmeden önce validasyon kontrolü
+        document.querySelector('form').addEventListener('submit', function(e) {
+            var ulkeSelect = document.querySelector('select[name="UlkeId"]');
+            var latInput = document.getElementById('latitudeInput');
+            var lngInput = document.getElementById('longitudeInput');
+            
+            // Ülke seçimi kontrolü
+            if (!ulkeSelect || !ulkeSelect.value || ulkeSelect.value === '' || ulkeSelect.value === '0') {
+                e.preventDefault();
+                alert('Lütfen bir ülke seçiniz.');
+                if (ulkeSelect) ulkeSelect.focus();
+                return false;
+            }
+            
+            // Koordinat kontrolü - Zorunlu
+            if (!latInput || !latInput.value || latInput.value === '' || isNaN(parseFloat(latInput.value))) {
+                e.preventDefault();
+                alert('Lütfen geçerli bir enlem (Latitude) değeri giriniz. Haritaya tıklayarak veya manuel olarak girebilirsiniz.');
+                if (latInput) latInput.focus();
+                return false;
+            }
+            
+            var lat = parseFloat(latInput.value);
+            if (lat < -90 || lat > 90) {
+                e.preventDefault();
+                alert('Enlem değeri -90 ile 90 arasında olmalıdır.');
+                if (latInput) latInput.focus();
+                return false;
+            }
+            
+            if (!lngInput || !lngInput.value || lngInput.value === '' || isNaN(parseFloat(lngInput.value))) {
+                e.preventDefault();
+                alert('Lütfen geçerli bir boylam (Longitude) değeri giriniz. Haritaya tıklayarak veya manuel olarak girebilirsiniz.');
+                if (lngInput) lngInput.focus();
+                return false;
+            }
+            
+            var lng = parseFloat(lngInput.value);
+            if (lng < -180 || lng > 180) {
+                e.preventDefault();
+                alert('Boylam değeri -180 ile 180 arasında olmalıdır.');
+                if (lngInput) lngInput.focus();
+                return false;
+            }
+        });
+    </script>
+}
+

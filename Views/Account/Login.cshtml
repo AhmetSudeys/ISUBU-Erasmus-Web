@@ -1,0 +1,61 @@
+@{
+    ViewData["Title"] = "Admin Girişi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Admin Girişi</h4>
+                </div>
+                <div class="card-body">
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger">
+                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <p class="mb-0">@error.ErrorMessage</p>
+                            }
+                        </div>
+                    }
+
+                    <form asp-action="Login" method="post">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                        <div class="mb-3">
+                            <label for="adminKullaniciAdi" class="form-label">Kullanıcı Adı</label>
+                            <input type="text" name="adminKullaniciAdi" id="adminKullaniciAdi" class="form-control" required autofocus />
+                            <span asp-validation-for="@ViewData["AdminKullaniciAdi"]" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="adminSifre" class="form-label">Şifre</label>
+                            <input type="password" name="adminSifre" id="adminSifre" class="form-control" required />
+                            <span asp-validation-for="@ViewData["AdminSifre"]" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                            </button>
+                        </div>
+                        
+                        <div class="mt-3 text-center">
+                            <a asp-controller="Home" asp-action="Index" class="text-muted">
+                                <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

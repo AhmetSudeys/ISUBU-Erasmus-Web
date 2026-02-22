@@ -1,0 +1,228 @@
+@{
+    ViewData["Title"] = "Yorum Yap";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Yorum Yap</h4>
+                    <small class="text-muted">@ViewBag.OkulAd</small>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            @ViewBag.Error
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    <form asp-action="YorumEkle" method="post" id="yorumForm" novalidate>
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@ViewBag.ProgramId" />
+                        
+                        <div class="mb-3">
+                            <label for="adSoyad" class="form-label">Ad Soyad <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="adSoyad" name="adSoyad" 
+                                   placeholder="Örn: Ahmet Yılmaz" 
+                                   required 
+                                   maxlength="200"
+                                   minlength="2"
+                                   pattern=".{2,}"
+                                   title="En az 2 karakter giriniz" />
+                            <div class="invalid-feedback">
+                                Lütfen geçerli bir ad soyad giriniz (en az 2 karakter).
+                            </div>
+                            <small class="form-text text-muted">Adınızı ve soyadınızı girin (maksimum 200 karakter)</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-posta <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   placeholder="ornek@email.com" 
+                                   required 
+                                   maxlength="200" />
+                            <div class="invalid-feedback">
+                                Lütfen geçerli bir e-posta adresi giriniz (örn: ornek@email.com).
+                            </div>
+                            <small class="form-text text-muted">Geçerli bir e-posta adresi girin</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="yorumYazisi" class="form-label">Yorumunuz <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="yorumYazisi" name="yorumYazisi" rows="5" 
+                                      placeholder="Yorumunuzu buraya yazın (minimum 20 karakter)..." 
+                                      required 
+                                      maxlength="200"
+                                      minlength="20"
+                                      title="En az 20, en fazla 200 karakter giriniz"></textarea>
+                            <div class="invalid-feedback">
+                                Yorum en az 20, en fazla 200 karakter olmalıdır.
+                            </div>
+                            <small class="form-text text-muted">
+                                <span id="charCount">0</span> / 200 karakter (minimum 20 karakter)
+                            </small>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a href="@Url.Action("ProgramDetails", new { id = ViewBag.ProgramId })" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Geri Dön
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Gönder
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        // Bootstrap 5 client-side validation 
+        (function() {
+            'use strict';
+            var forms = document.querySelectorAll('#yorumForm');
+            
+            Array.prototype.slice.call(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+
+        
+        // Ad Soyad karakter sayısı kontrolü
+        var adSoyadInput = document.getElementById('adSoyad');
+        adSoyadInput.addEventListener('input', function() {
+            var maxLength = 200;
+            var minLength = 2;
+            var currentLength = this.value.trim().length;
+            
+            if (currentLength > maxLength) {
+                this.value = this.value.substring(0, maxLength);
+                currentLength = maxLength;
+            }
+
+            // madde 14 - client side validation
+            // Real-time validation feedback
+            if (currentLength < minLength && currentLength > 0) {
+                this.setCustomValidity('En az ' + minLength + ' karakter giriniz');
+            } else if (currentLength === 0) {
+                this.setCustomValidity('Bu alan zorunludur');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        // Ad Soyad blur kontrolü (boş bırakılmışsa)
+        adSoyadInput.addEventListener('blur', function() {
+            if (this.value.trim().length === 0) {
+                this.setCustomValidity('Ad Soyad alanı boş bırakılamaz');
+            }
+        });
+
+        // E-posta format kontrolü
+        var emailInput = document.getElementById('email');
+        var emailPattern = new RegExp('^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$');
+        
+        emailInput.addEventListener('input', function() {
+            var emailValue = this.value.trim();
+            
+            if (emailValue.length === 0) {
+                this.setCustomValidity('E-posta alanı boş bırakılamaz');
+            } else if (!emailPattern.test(emailValue)) {
+                this.setCustomValidity('Geçerli bir e-posta adresi giriniz (örn: ornek@email.com)');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        emailInput.addEventListener('blur', function() {
+            var emailValue = this.value.trim();
+            if (emailValue.length === 0) {
+                this.setCustomValidity('E-posta alanı boş bırakılamaz');
+            } else if (!emailPattern.test(emailValue)) {
+                this.setCustomValidity('Geçerli bir e-posta adresi giriniz (örn: ornek@email.com)');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        // Yorum karakter sayısı kontrolü ve gösterimi
+        var yorumTextarea = document.getElementById('yorumYazisi');
+        var charCountSpan = document.getElementById('charCount');
+        var maxLength = 200;
+        var minLength = 20;
+        
+        yorumTextarea.addEventListener('input', function() {
+            var currentLength = this.value.trim().length;
+            
+            // Karakter sayısını güncelle
+            charCountSpan.textContent = currentLength;
+            
+            // Maksimum karakter kontrolü
+            if (currentLength > maxLength) {
+                this.value = this.value.substring(0, maxLength);
+                currentLength = maxLength;
+                charCountSpan.textContent = currentLength;
+            }
+            
+            // Minimum karakter kontrolü
+            if (currentLength === 0) {
+                this.setCustomValidity('Yorum alanı boş bırakılamaz');
+                charCountSpan.classList.remove('text-warning', 'text-danger', 'text-success');
+            } else if (currentLength < minLength) {
+                this.setCustomValidity('Yorum en az ' + minLength + ' karakter olmalıdır');
+                charCountSpan.classList.remove('text-danger', 'text-success');
+                charCountSpan.classList.add('text-warning');
+            } else if (currentLength >= maxLength) {
+                this.setCustomValidity('');
+                charCountSpan.classList.remove('text-warning', 'text-success');
+                charCountSpan.classList.add('text-danger');
+            } else {
+                this.setCustomValidity('');
+                charCountSpan.classList.remove('text-warning', 'text-danger');
+                charCountSpan.classList.add('text-success');
+            }
+            
+            // Karakter sayısı rengini güncelle
+            if (currentLength >= maxLength - 20) {
+                charCountSpan.classList.remove('text-warning', 'text-success');
+                charCountSpan.classList.add('text-danger');
+            } else if (currentLength < minLength) {
+                charCountSpan.classList.remove('text-danger', 'text-success');
+                charCountSpan.classList.add('text-warning');
+            } else {
+                charCountSpan.classList.remove('text-danger', 'text-warning');
+                charCountSpan.classList.add('text-success');
+            }
+        });
+
+        // Yorum blur kontrolü
+        yorumTextarea.addEventListener('blur', function() {
+            var currentLength = this.value.trim().length;
+            if (currentLength === 0) {
+                this.setCustomValidity('Yorum alanı boş bırakılamaz');
+            } else if (currentLength < minLength) {
+                this.setCustomValidity('Yorum en az ' + minLength + ' karakter olmalıdır');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        // Sayfa yüklendiğinde karakter sayısını başlat
+        charCountSpan.textContent = yorumTextarea.value.length;
+    </script>
+}
+

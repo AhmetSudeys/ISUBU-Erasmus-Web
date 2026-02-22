@@ -1,0 +1,51 @@
+@model deneme.Models.Okul
+@{
+    ViewData["Title"] = "Okul Sil";
+}
+
+<h2>Okul Sil</h2>
+<hr />
+
+<h3>Bu okulu silmek istediğinizden emin misiniz?</h3>
+
+<div class="alert alert-warning">
+    <i class="fas fa-exclamation-triangle"></i> 
+    <strong>Uyarı:</strong> Bu okul silinirse, bu okula ait tüm Erasmus programları da silinecektir!
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <dl class="row">
+            <dt class="col-sm-3">Okul Adı:</dt>
+            <dd class="col-sm-9">@Model.OkulAd</dd>
+
+            <dt class="col-sm-3">Ülke:</dt>
+            <dd class="col-sm-9">
+                <country-flag country-name="@Model.Ulke?.UlkeIsim"></country-flag>
+                @Model.Ulke?.UlkeIsim
+            </dd>
+
+            <dt class="col-sm-3">İnternet Sitesi:</dt>
+            <dd class="col-sm-9">@Model.InternetSitesi</dd>
+
+            @if (Model.ErasmusProgramlari != null && Model.ErasmusProgramlari.Any())
+            {
+                <dt class="col-sm-3">Erasmus Programları:</dt>
+                <dd class="col-sm-9">
+                    <span class="badge bg-danger">@Model.ErasmusProgramlari.Count program silinecek</span>
+                </dd>
+            }
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="OkulId" />
+            <div class="d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-secondary">İptal</a>
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Sil
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+

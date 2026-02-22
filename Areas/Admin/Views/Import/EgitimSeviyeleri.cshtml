@@ -1,0 +1,120 @@
+@{
+    ViewData["Title"] = "Eğitim Seviyeleri İçe Aktar";
+}
+
+<h2>Eğitim Seviyeleri İçe Aktar</h2>
+<hr />
+
+@if (ViewBag.Success != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> @ViewBag.Success
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (ViewBag.Warning != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-triangle"></i> @ViewBag.Warning
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-times-circle"></i> @ViewBag.Error
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (ViewBag.Errors != null && ViewBag.Errors.Count > 0)
+{
+    <div class="alert alert-info">
+        <h5><i class="fas fa-info-circle"></i> Hata Detayları:</h5>
+        <ul class="mb-0">
+            @foreach (var error in ViewBag.Errors)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Excel Dosyası Yükle</h5>
+        <p class="text-muted">
+            Excel dosyanızda şu sütunlar olmalıdır:
+        </p>
+        <ul>
+            <li><strong>Erasmus Kodu</strong> - Programın Erasmus kodu</li>
+            <li><strong>Lisans</strong> - Lisans için "*" işareti</li>
+            <li><strong>Yüksek Lisans</strong> - Yüksek Lisans için "*" işareti</li>
+            <li><strong>Doktora</strong> - Doktora için "*" işareti</li>
+        </ul>
+
+        @if (ViewBag.ExcelFileExists == true)
+        {
+            <div class="alert alert-info mb-3">
+                <i class="fas fa-info-circle"></i> 
+                <strong>Proje klasöründe Excel dosyası bulundu!</strong>
+                <br />
+                Dosya: <code>İkili Anlaşmalar Listesi (Güncel).xlsx</code>
+                <br />
+                <form asp-action="EgitimSeviyeleriFromFile" method="post" class="mt-2">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-play"></i> Proje Klasöründeki Dosyayı Kullan
+                    </button>
+                </form>
+            </div>
+        }
+
+        <hr />
+
+        <h5>Veya Yeni Dosya Yükle</h5>
+        <form asp-action="EgitimSeviyeleri" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            
+            <div class="mb-3">
+                <label for="excelFile" class="form-label">Excel Dosyası Seçin</label>
+                <input type="file" class="form-control" id="excelFile" name="excelFile" accept=".xlsx,.xls" required />
+                <small class="form-text text-muted">Sadece .xlsx veya .xls formatında dosyalar kabul edilir.</small>
+            </div>
+
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> <strong>Not:</strong> 
+                Excel dosyasında "*" işareti olan eğitim seviyeleri ilgili programa eklenecektir. 
+                Mevcut ilişkiler korunur, sadece yeni ilişkiler eklenir.
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a asp-area="Admin" asp-controller="ErasmusProgrami" asp-action="Index" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Geri Dön
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-upload"></i> Yükle ve İçe Aktar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Dosya seçildiğinde kontrol et
+        document.getElementById('excelFile').addEventListener('change', function(e) {
+            var file = e.target.files[0];
+            if (file) {
+                var extension = file.name.split('.').pop().toLowerCase();
+                if (extension !== 'xlsx' && extension !== 'xls') {
+                    alert('Lütfen geçerli bir Excel dosyası (.xlsx veya .xls) seçin.');
+                    e.target.value = '';
+                }
+            }
+        });
+    </script>
+}
+

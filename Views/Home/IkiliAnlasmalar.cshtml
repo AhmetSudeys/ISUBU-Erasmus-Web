@@ -1,0 +1,144 @@
+@model IEnumerable<deneme.Models.ErasmusProgrami>
+@{
+    ViewData["Title"] = "İkili Anlaşmalar";
+    var ulkeler = ViewBag.Ulkeler as List<deneme.Models.Ulke>;
+    var diller = ViewBag.Diller as List<deneme.Models.Dil>;
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4">İkili Anlaşmalar</h2>
+            <p class="text-muted">Tüm Erasmus anlaşmalarını buradan görüntüleyebilir ve detaylarına ulaşabilirsiniz.</p>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <form method="get" class="row g-3">
+                <div class="col-md-4">
+                    <input type="text" name="search" class="form-control" placeholder="Okul, Bölüm veya Erasmus Kodu ile ara..." value="@ViewBag.Search" />
+                </div>
+                <div class="col-md-3">
+                    <select name="ulkeId" class="form-select">
+                        <option value="">Tüm Ülkeler</option>
+                        @if (ulkeler != null)
+                        {
+                            @foreach (var ulke in ulkeler)
+                            {
+                                <option value="@ulke.UlkeId" selected="@(ViewBag.SelectedUlkeId == ulke.UlkeId)">@ulke.UlkeIsim</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select name="dilId" class="form-select">
+                        <option value="">Tüm Diller</option>
+                        @if (diller != null)
+                        {
+                            @foreach (var dil in diller)
+                            {
+                                <option value="@dil.DilId" selected="@(ViewBag.SelectedDilId == dil.DilId)">@dil.DilAdi</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search"></i> Filtrele
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> Toplam <strong>@ViewBag.TotalCount</strong> anlaşma bulunmaktadır.
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var program in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <country-flag country-name="@program.Okul?.Ulke?.UlkeIsim"></country-flag>
+                            @program.Okul?.OkulAd
+                        </h5>
+                        <p class="card-text">
+                            <strong>Ülke:</strong> @program.Okul?.Ulke?.UlkeIsim<br />
+                            <strong>Bölüm:</strong> @program.BolumAdi<br />
+                            <strong>Erasmus Kodu:</strong> <span class="badge bg-secondary">@program.ErasmusKodu</span><br />
+                            <strong>Dil:</strong> @Html.Badge(program.Dil?.DilAdi ?? "N/A", "info")<br />
+                            <strong>Eğitim Seviyeleri:</strong> 
+                            @if (program.EgitimSeviyeleri != null && program.EgitimSeviyeleri.Any())
+                            {
+                                @string.Join(", ", program.EgitimSeviyeleri.Select(es => es.EgitimSeviyesiAdi))
+                            }
+                            else
+                            {
+                                <span class="text-muted">-</span>
+                            }
+                        </p>
+                        <a href="@Url.Action("ProgramDetails", new { id = program.ErasmusId })" class="btn btn-primary">
+                            <i class="fas fa-eye"></i> Detayları Görüntüle
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i> Arama kriterlerinize uygun anlaşma bulunamadı.
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (ViewBag.TotalPages > 1)
+    {
+        <div class="row mt-4">
+            <div class="col-12">
+                <nav aria-label="Sayfa navigasyonu">
+                    <ul class="pagination justify-content-center">
+                        @if (ViewBag.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="?page=@(ViewBag.CurrentPage - 1)&pageSize=@ViewBag.PageSize&search=@ViewBag.Search&ulkeId=@ViewBag.SelectedUlkeId&dilId=@ViewBag.SelectedDilId">
+                                    <i class="fas fa-chevron-left"></i> Önceki
+                                </a>
+                            </li>
+                        }
+                        
+                        @for (int i = Math.Max(1, ViewBag.CurrentPage - 2); i <= Math.Min(ViewBag.TotalPages, ViewBag.CurrentPage + 2); i++)
+                        {
+                            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                                <a class="page-link" href="?page=@i&pageSize=@ViewBag.PageSize&search=@ViewBag.Search&ulkeId=@ViewBag.SelectedUlkeId&dilId=@ViewBag.SelectedDilId">@i</a>
+                            </li>
+                        }
+                        
+                        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="?page=@(ViewBag.CurrentPage + 1)&pageSize=@ViewBag.PageSize&search=@ViewBag.Search&ulkeId=@ViewBag.SelectedUlkeId&dilId=@ViewBag.SelectedDilId">
+                                    Sonraki <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    }
+</div>
+
