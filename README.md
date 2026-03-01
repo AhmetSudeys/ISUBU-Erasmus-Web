@@ -123,6 +123,16 @@ Uygulama, **ASP.NET Core MVC** mimarisi kullanılarak modern **.NET 9.0** platfo
   DataTables ve SweetAlert2 entegrasyonu ile okulların ve programların güvenle yönetilmesi.
 </p>
 
+<p align="center">
+Bu platform sayesinde yeni üniversiteler ve Erasmus programları sisteme eklenebilir, 
+harita üzerinde konumlandırılabilir ve ilgili okul hakkında ihtiyaç duyulan tüm bilgilere 
+sade ve anlaşılır bir arayüz üzerinden erişilebilir. Kullanıcılar deneyimlerini paylaşarak 
+yorum yapabilir, diğer öğrencilerin görüşlerinden faydalanabilir. Rol bazlı yapı sayesinde 
+hem yöneticiler içerik yönetimini güvenli şekilde gerçekleştirebilir hem de öğrenciler 
+etkileşimli ve bilgilendirici bir deneyim yaşayabilir.
+</p>
+
+
 ## 💻 Kurulum ve Çalıştırma
 
 Bu projeyi yerel ortamınızda ayağa kaldırmak için aşağıdaki adımları sırasıyla takip edebilirsiniz.
