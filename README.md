@@ -1,4 +1,4 @@
-cat << 'EOF' > README.md
+
 # 🌍 Erasmus Koordinatörlüğü Yönetim Sistemi
 
 Bu proje, Isparta Uygulamalı Bilimler Üniversitesi (ISUBÜ) Erasmus Koordinatörlüğü için geliştirilmiş kapsamlı bir web uygulamasıdır. Öğrencilerin anlaşmalı okulları ve Erasmus programlarını kolayca inceleyip yorum yapabilmesini sağlarken, yetkili personelin tüm bu süreci tek bir merkezden güvenle yönetmesine olanak tanır.
@@ -58,8 +58,4 @@ Uygulama, **ASP.NET Core MVC** mimarisi kullanılarak modern **.NET 9.0** platfo
 
 ## 💻 Kurulum ve Çalıştırma
 
-Projeyi yerel ortamınızda (localhost) çalıştırmak için aşağıdaki adımları izleyebilirsiniz:
 
-1. Repoyu bilgisayarınıza klonlayın:
-   ```bash
-   git clone [https://github.com/kullaniciadiniz/erasmus-koordinatorlugu-web.git](https://github.com/kullaniciadiniz/erasmus-koordinatorlugu-web.git)
