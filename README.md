@@ -37,53 +37,127 @@ Uygulama, **ASP.NET Core MVC** mimarisi kullanılarak modern **.NET 9.0** platfo
 ## 📸 Ekran Görüntüleri
 
 **1. Ana Sayfa ve Etkileşimli Harita**
-> ![Ana Sayfa](Buraya_ana_sayfanin_resim_linkini_ekleyin_ve_bu_metni_silin)
+> ![Ana Sayfa]<img width="1103" height="1393" alt="anasayfa" src="https://github.com/user-attachments/assets/e5a13ade-2700-4bc5-9ba4-5b4a9165a737" />
 > Öğrencilerin anlaşmalı okulları coğrafi olarak inceleyebildiği ana sayfa görünümü.
 
 **2. Gelişmiş Filtreleme (İkili Anlaşmalar)**
-> ![Filtreleme](Buraya_ikili_anlasmalar_resim_linkini_ekleyin_ve_bu_metni_silin)
+> ![Filtreleme]<img width="858" height="832" alt="image" src="https://github.com/user-attachments/assets/97a3746a-9eaf-4f7a-affa-22626f89e674" />
 > Erasmus programları arasında ülke, dil ve bölüm bazlı hızlı arama imkanı.
 
 **3. Program Detayları ve Yorumlar**
-> ![Program Detayları](Buraya_program_detay_resim_linkini_ekleyin_ve_bu_metni_silin)
+> ![Program Detayları]<img width="1259" height="1545" alt="image" src="https://github.com/user-attachments/assets/73e78077-42c0-4b01-92a4-5fcdded94bd7" />
 > Öğrencilerin program detaylarını inceleyip, diğer öğrencilerin tecrübelerini okuyabildiği alan.
 
 **4. Admin Paneli - Dashboard**
-> ![Admin Dashboard](Buraya_admin_dashboard_resim_linkini_ekleyin_ve_bu_metni_silin)
+> ![Admin Dashboard]
+> <img width="1259" height="595" alt="image" src="https://github.com/user-attachments/assets/d84a0f23-1b48-4f60-972e-90a77ec98e5d" />
+<img width="1259" height="600" alt="image" src="https://github.com/user-attachments/assets/88ab90dc-80aa-459b-bce6-051305a408bc" />
+<img width="1259" height="599" alt="image" src="https://github.com/user-attachments/assets/32e90bbe-365b-4cbf-bfc8-a021d89052f3" />
+<img width="649" height="485" alt="image" src="https://github.com/user-attachments/assets/9a714e15-6d35-4311-82d7-da751dcc3300" />
+<img width="1259" height="552" alt="image" src="https://github.com/user-attachments/assets/e5d36072-4d9f-4838-a92e-ca15df8985af" 
+ <img width="1259" height="578" alt="image" src="https://github.com/user-attachments/assets/fb9fff2a-f5dd-44cc-bb69-514d65c2a165" />
+ <img width="1259" height="368" alt="image" src="https://github.com/user-attachments/assets/4ac065a4-9a73-4817-89a9-0d204e232dae" />
 > Sistemin genel durumunun ve son eklenen öğrenci yorumlarının takip edildiği yönetici paneli.
 
 **5. Admin Paneli - Veri Yönetimi**
-> ![Admin Liste](Buraya_admin_liste_resim_linkini_ekleyin_ve_bu_metni_silin)
+> ![Admin Liste] <img width="1259" height="584" alt="image" src="https://github.com/user-attachments/assets/6ed5a838-b43e-42ff-960e-272283c9aaa6" />
+<img width="1259" height="587" alt="image" src="https://github.com/user-attachments/assets/4f32a2b8-8e80-47d9-a0cd-1c38f734520d" />
+<img width="1259" height="364" alt="image" src="https://github.com/user-attachments/assets/f3378106-9cd1-4067-a5ed-ca8e23e35055" />
+<img width="1259" height="597" alt="image" src="https://github.com/user-attachments/assets/86813d62-df0a-4ce0-99fd-8aa7d36ab6e1" />
+<img width="1259" height="268" alt="image" src="https://github.com/user-attachments/assets/cafcaa9e-e25d-4c90-bc32-20604df41106" />
 > DataTables ve SweetAlert2 entegrasyonu ile okulların ve programların güvenle yönetilmesi.
+
+
 
 ## 💻 Kurulum ve Çalıştırma
 
-# 1. Projeyi bilgisayarınıza klonlayın
+Bu projeyi yerel ortamınızda ayağa kaldırmak için aşağıdaki adımları sırasıyla takip edebilirsiniz.
+
+---
+
+### 1️⃣ Projeyi Klonlayın
+
+Terminalinizi açın ve projeyi bilgisayarınıza indirin:
+
+```bash
 git clone https://github.com/AhmetSudeys/ISUBU-Erasmus-Web.git
-
-# 2. Klonlanan projenin ana dizinine geçiş yapın
 cd ISUBU-Erasmus-Web
+```
 
-# ÖNEMLİ NOT: Eğer projenizin .csproj (C# proje dosyası) klasör yapınızda bir alt 
-# dizindeyse (örneğin "deneme" klasöründeyse), o dizine girmeniz gerekir:
-# cd deneme 
-# (Eğer .csproj ana dizindeyse bu adımı atlayabilirsiniz.)
+---
 
-# 3. Projedeki gerekli kütüphaneleri (NuGet paketlerini) indirin ve kurun
+### 2️⃣ Bağımlılıkları Yükleyin
+
+Gerekli tüm NuGet paketlerini yüklemek için:
+
+```bash
 dotnet restore
+```
 
-# 4. Veritabanını yerel (localhost) sunucunuzda oluşturun.
-# DİKKAT: Bu adımı çalıştırmadan önce kod editörünüzde 'appsettings.json' dosyasını açıp 
-# "DefaultConnection" kısmındaki SQL Server veritabanı bağlantı cümlenizin 
-# bilgisayarınızdaki yerel SQL Server ayarlarıyla eşleştiğinden emin olun.
+> ⚠️ **Dizin Kontrolü**  
+> Eğer `.csproj` dosyanız ana dizinde değilse (örneğin `/src` veya `/deneme` klasöründe ise), komutları çalıştırmadan önce ilgili klasöre geçmeyi unutmayın:
+>
+> ```bash
+> cd <klasör-adı>
+> ```
+
+---
+
+### 3️⃣ Veritabanı Yapılandırması
+
+Migration işlemlerinden önce:
+
+- `appsettings.json` dosyasını açın.
+- `DefaultConnection` alanındaki **Connection String** bilgisini kendi yerel SQL Server ayarlarınıza göre güncelleyin.
+
+Ardından veritabanını oluşturmak için:
+
+```bash
 dotnet ef database update
+```
 
-# 5. Projeyi derleyin ve yayına alın (çalıştırın)
+> 💡 **dotnet ef komutu çalışmıyorsa**
+>
+> Entity Framework Core araçlarını global olarak yükleyebilirsiniz:
+>
+> ```bash
+> dotnet tool install --global dotnet-ef
+> ```
+
+---
+
+### 4️⃣ Projeyi Çalıştırın
+
+Her şey hazır! Uygulamayı başlatmak için:
+
+```bash
 dotnet run
+```
 
-# Proje başarıyla çalıştığında terminalde "Now listening on: http://localhost:XXXX" 
-# şeklinde bir mesaj göreceksiniz. Bu linke tıklayarak (veya tarayıcıya kopyalayarak) 
-# projenizi görüntüleyebilirsiniz. İşlemi durdurmak için terminalde CTRL + C yapabilirsiniz.
+Başarılı bir şekilde çalıştığında terminalde şu çıktıyı göreceksiniz:
 
-Ufak bir hatırlatma: dotnet ef database update komutunun çalışması için bilgisayarınızda Entity Framework Core CLI araçlarının yüklü olması gerekir. Eğer bu komutta "komut bulunamadı" gibi bir hata alırsanız, önce şu kodu çalıştırarak aracı global olarak kurabilirsiniz: dotnet tool install --global dotnet-ef
+```
+Now listening on: http://localhost:XXXX
+```
 
+Tarayıcınızdan bu adresi ziyaret ederek projeyi test edebilirsiniz.
+
+---
+
+### 🛑 Uygulamayı Durdurma
+
+Uygulama çalışırken terminalde:
+
+```bash
+CTRL + C
+```
+
+tuş kombinasyonunu kullanarak projeyi durdurabilirsiniz.
+
+---
+
+## ✅ Gereksinimler
+
+- .NET SDK (6.0 veya üzeri önerilir)
+- SQL Server
+- Entity Framework Core Tools
