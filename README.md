@@ -58,4 +58,32 @@ Uygulama, **ASP.NET Core MVC** mimarisi kullanılarak modern **.NET 9.0** platfo
 
 ## 💻 Kurulum ve Çalıştırma
 
+# 1. Projeyi bilgisayarınıza klonlayın
+git clone https://github.com/AhmetSudeys/ISUBU-Erasmus-Web.git
+
+# 2. Klonlanan projenin ana dizinine geçiş yapın
+cd ISUBU-Erasmus-Web
+
+# ÖNEMLİ NOT: Eğer projenizin .csproj (C# proje dosyası) klasör yapınızda bir alt 
+# dizindeyse (örneğin "deneme" klasöründeyse), o dizine girmeniz gerekir:
+# cd deneme 
+# (Eğer .csproj ana dizindeyse bu adımı atlayabilirsiniz.)
+
+# 3. Projedeki gerekli kütüphaneleri (NuGet paketlerini) indirin ve kurun
+dotnet restore
+
+# 4. Veritabanını yerel (localhost) sunucunuzda oluşturun.
+# DİKKAT: Bu adımı çalıştırmadan önce kod editörünüzde 'appsettings.json' dosyasını açıp 
+# "DefaultConnection" kısmındaki SQL Server veritabanı bağlantı cümlenizin 
+# bilgisayarınızdaki yerel SQL Server ayarlarıyla eşleştiğinden emin olun.
+dotnet ef database update
+
+# 5. Projeyi derleyin ve yayına alın (çalıştırın)
+dotnet run
+
+# Proje başarıyla çalıştığında terminalde "Now listening on: http://localhost:XXXX" 
+# şeklinde bir mesaj göreceksiniz. Bu linke tıklayarak (veya tarayıcıya kopyalayarak) 
+# projenizi görüntüleyebilirsiniz. İşlemi durdurmak için terminalde CTRL + C yapabilirsiniz.
+
+Ufak bir hatırlatma: dotnet ef database update komutunun çalışması için bilgisayarınızda Entity Framework Core CLI araçlarının yüklü olması gerekir. Eğer bu komutta "komut bulunamadı" gibi bir hata alırsanız, önce şu kodu çalıştırarak aracı global olarak kurabilirsiniz: dotnet tool install --global dotnet-ef
 
